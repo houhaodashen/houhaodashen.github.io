@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="HOUHAO" />
+
+
+
+<meta name="description" content="并发锁的深入123456789101112131415161718192021222324252627282930311.可重入锁(递归锁)	 当一个线程得到一个对象锁后，在请求内部代码块(内层代码块要获取这个对象锁)，那么这个线程也能访问这个内层函数。防止了死锁。	 synchronized、Lock2.乐观锁	默认没有不会发生并发问题，但是在更新的时候会加上版本号或者CAS机制实现。	Mysq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="并发">
+<meta property="og:url" content="https://houhaodashen.github.io/2020/03/17/%E5%B9%B6%E5%8F%91/index.html">
+<meta property="og:site_name" content="waste talent people">
+<meta property="og:description" content="并发锁的深入123456789101112131415161718192021222324252627282930311.可重入锁(递归锁)	 当一个线程得到一个对象锁后，在请求内部代码块(内层代码块要获取这个对象锁)，那么这个线程也能访问这个内层函数。防止了死锁。	 synchronized、Lock2.乐观锁	默认没有不会发生并发问题，但是在更新的时候会加上版本号或者CAS机制实现。	Mysq">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-17T09:31:07.173Z">
+<meta property="article:modified_time" content="2020-01-10T05:53:46.000Z">
+<meta property="article:author" content="HOUHAO">
+<meta name="twitter:card" content="summary">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="waste talent people" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>并发 | waste talent people</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: 
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">HOUHAO</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">有关钱的探索</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/" target="_blank" rel="noopener">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/" target="_blank" rel="noopener">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">HOUHAO</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">HOUHAO</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">有关钱的探索</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-并发" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/03/17/%E5%B9%B6%E5%8F%91/" class="article-date">
+      <time datetime="2020-03-17T09:31:07.173Z" itemprop="datePublished">2020-03-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      并发
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><h3 id="锁的深入"><a href="#锁的深入" class="headerlink" title="锁的深入"></a>锁的深入</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.可重入锁(递归锁)</span><br><span class="line">	 当一个线程得到一个对象锁后，在请求内部代码块(内层代码块要获取这个对象锁)，那么这个线程也能访问这个内层函数。防止了死锁。</span><br><span class="line">	 <span class="keyword">synchronized</span>、Lock</span><br><span class="line"><span class="number">2</span>.乐观锁</span><br><span class="line">	默认没有不会发生并发问题，但是在更新的时候会加上版本号或者CAS机制实现。</span><br><span class="line">	Mysql中的update:</span><br><span class="line">	where条件中判断拿出来的version是否与数据库中的version相同。那么就可以更新成功。</span><br><span class="line">	update table set x=x+1, version=version+1 where id=#&#123;id&#125; and version=#&#123;version&#125;;    </span><br><span class="line"><span class="number">3</span>.悲观锁</span><br><span class="line">	无论是否在多线程还是单线程环境中，悲观锁也认为有多个线程并发的获取锁。所以只有当线程拿到对象的锁之后，才有能执行；否则就阻塞等待锁的释放</span><br><span class="line">	<span class="keyword">synchronized</span>、Lock</span><br><span class="line"><span class="number">4</span>.自旋锁</span><br><span class="line">  	尝试获取锁的线程不会立即阻塞，而是采用循环的方式尝试去获取锁。这样子的话可以减少线程的上下文切换，但是正因为锁的不断循环会消耗CPU的性能。</span><br><span class="line">  	比如：Atomic原子类</span><br><span class="line"><span class="number">5</span>.轻量级锁</span><br><span class="line"><span class="number">6</span>.偏向锁</span><br><span class="line">  	通常情况下一般都是单线程的，那么会在对象的mark down存放当前线程的id,如果是相同的线程访问，不需要获取锁，就可以直接访问你这个对象。但是如果有其他线程尝试获取这个对象，那么就会从偏向锁升级到轻量级锁，轻量级锁会使得线程通过CAS的方式获取锁，如果获取不到，会通过自旋锁来尝试锁。</span><br><span class="line"><span class="number">8</span>.读写锁</span><br><span class="line"><span class="number">9</span>.CAS无锁</span><br><span class="line">	Compare And Swap比较再交换； </span><br><span class="line"><span class="number">10</span> 读写锁</span><br><span class="line">	ReentrantReadWriteLock 实现的就是AbstractQueuedSynchronizer</span><br><span class="line"><span class="number">11</span>.公平锁和非公平锁</span><br><span class="line">  	对应的类：ReentrantLock，<span class="keyword">synchronized</span>非公平锁</span><br><span class="line">  	公平锁：多个线程按照申请锁的顺序来，先进先出选择获取锁</span><br><span class="line">    非公平锁：多个线程不按照申请锁的顺序来拿锁，都尝试获取锁，哪个线程拿到就拿到。非公平锁的吞吐量比公平锁大</span><br><span class="line"><span class="number">12</span>.独占锁(写锁)/共享锁(读锁)/互斥锁</span><br><span class="line">  独占锁：同一时刻只能有一个线程获取到锁</span><br><span class="line">  共享锁：同一时刻可以有多个线程持有</span><br><span class="line">  互斥锁：共享锁可以保证读读的并发性，但是读写，写写，写读是互斥的</span><br><span class="line">  DEMO:ReentrantReadWriteLock</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自旋锁demo</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyHashMap</span> </span>&#123;</span><br><span class="line">    AtomicReference&lt;Thread&gt; reference = <span class="keyword">new</span> AtomicReference&lt;&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">lock</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Thread thread = Thread.currentThread();</span><br><span class="line">        System.out.println(thread.getName() + <span class="string">" come in"</span>);</span><br><span class="line">        <span class="keyword">while</span> (!reference.compareAndSet(<span class="keyword">null</span>, thread))&#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(thread.getName() + <span class="string">" lock"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Thread thread = Thread.currentThread();</span><br><span class="line">        reference.compareAndSet(thread, <span class="keyword">null</span>);</span><br><span class="line">        System.out.println(thread.getName() + <span class="string">" unlock"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 问题 synchronized和lock的区别</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>synchronized</th>
+<th>lock</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>锁的实现</td>
+<td>非公平锁</td>
+<td>非公平锁、公平锁都可以实现</td>
+</tr>
+<tr>
+<td>锁的获取</td>
+<td></td>
+<td>可以超时获取 或者中断 lockInterrupt</td>
+</tr>
+<tr>
+<td>jvm</td>
+<td>java的关键字;底层是monitor对象，加锁monitorenter,释放锁monitorexit</td>
+<td>java5的juc类</td>
+</tr>
+<tr>
+<td>线程阻塞</td>
+<td>不需要自己搞</td>
+<td>需要自己维护</td>
+</tr>
+<tr>
+<td>线程await/notify</td>
+<td></td>
+<td>线程可以分条件await。绑定多个Condition</td>
+</tr>
+</tbody></table>
+<h3 id="并发包JUC"><a href="#并发包JUC" class="headerlink" title="并发包JUC"></a>并发包JUC</h3><h4 id="执行程序-线程池"><a href="#执行程序-线程池" class="headerlink" title="执行程序:线程池"></a>执行程序:线程池</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">并发包里面包含的组件：</span><br><span class="line"> * 执行程序</span><br><span class="line"> * 并发队列</span><br><span class="line"> * 同步器</span><br><span class="line"> * 并发Collcation</span><br><span class="line"> </span><br><span class="line"><span class="number">1</span>.执行程序：线程池</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                            <span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                            <span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                            TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">                            BlockingQueue&lt;Runnable&gt; workQueue,</span></span></span><br><span class="line"><span class="function"><span class="params">                            ThreadFactory threadFactory,</span></span></span><br><span class="line"><span class="function"><span class="params">                            RejectedExecutionHandler handler)</span></span></span><br><span class="line"><span class="function">  线程池执行者构造函数：</span></span><br><span class="line"><span class="function">  corePoolSize：线程池实现运行的线程数。当运行线程小于corePoolSize时，会在corePoolSize里面执行</span></span><br><span class="line"><span class="function">  maximumPoolSize：线程池允许运行的最大线程数，当workQueue存放不下的时候，任务放在maximumPoolSize中执行</span></span><br><span class="line"><span class="function">  keepAliveTime，unit：空闲线程等待任务的最长时间，超过这个时间线程销毁。</span></span><br><span class="line"><span class="function">  workQueue：任务执行前保存任务的队列。</span></span><br><span class="line"><span class="function">  handler：任务已经无法存放和执行时，拒绝任务的策略。默认是拒绝任务，并且抛出异常。</span></span><br><span class="line"><span class="function">  		AbortPolicy：默认是拒绝任务，并且抛出异常</span></span><br><span class="line"><span class="function">      DiscardPolicy:直接丢弃，不处理</span></span><br><span class="line"><span class="function">      DiscardOldestPolicy：抛弃队列中等待时间最久的</span></span><br><span class="line"><span class="function">      CallerRunPolicy:交给主线程执行</span></span><br><span class="line"><span class="function">  特点：</span></span><br><span class="line"><span class="function">  	线程复用，控制最大并发数，管理线程</span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  问题一：workQueue为什么是阻塞队列</span></span><br><span class="line"><span class="function">  	阻塞队列是为了让线程阻塞，等到corePoolSize释放资源，可以把线程池视为一种资源</span></span><br><span class="line"><span class="function">  问题二：corePoolSize和maximumPoolSize设计的原因</span></span><br><span class="line"><span class="function">  	maximumPoolSize:规定了线程池允许运行的最大线程数。</span></span><br><span class="line"><span class="function">  	corePoolSize：线程池维持的线程数。所以corePoolSize&lt;</span>=maximumPoolSize</span><br><span class="line">  问题三：线程池的线程池大小怎么配置</span><br><span class="line">    CPU密集型任务：任务不会产生大量的IO阻塞，CPU运行速度快。 线程数= CPU核数+<span class="number">1</span></span><br><span class="line">    IO密集：任务产生大量IO阻塞，线程可能会一直在等待，增加线程数，减少CPU等待时间。线程数 = <span class="number">2</span>*CPU核数</span><br><span class="line">    </span><br><span class="line">  <span class="comment">//Executors根据ThreadPoolExecutor提供的方法</span></span><br><span class="line">  <span class="comment">//固定大小的线程池 </span></span><br><span class="line">  Executors.newFixedThreadPool(<span class="number">3</span>); </span><br><span class="line">	corePoolSize=<span class="number">3</span> workQueue=LinkedBlockingQueue  任务队列是一个无界队列。所以运行的线程有corePoolSize个</span><br><span class="line">  <span class="comment">//缓存大小的线程池 </span></span><br><span class="line">  Executors.newCachedThreadPool();</span><br><span class="line">  corePoolSize=<span class="number">0</span> workQueue=SynchronousQueue maximumPoolSize=<span class="keyword">int</span>最大值。SynchronousQueue是一个没有容量队列，所以有任务会直接提交给maximumPoolSize执行。</span><br><span class="line">  <span class="comment">//单线程的线程池</span></span><br><span class="line">  Executors.newSingleThreadExecutor();</span><br><span class="line">  corePoolSize=<span class="number">1</span> workQueue=LinkedBlockingQueue corePoolSize只有一个线程可以执行任务，但是能保证线程一直存活，不需要重复创建线程。</span><br><span class="line"> </span><br><span class="line"><span class="number">2</span>.定时线程执行者ScheduledPoolExecutor</span><br><span class="line">    方法：</span><br><span class="line">    ScheduledFuture&lt;?&gt; scheduleAtFixedRate(Runnable command, <span class="keyword">long</span> initialDelay,<span class="keyword">long</span> period,TimeUnit unit) ：每隔period时间执行，要等到上次任务执行完毕</span><br><span class="line">    ScheduledFuture&lt;?&gt; scheduleWithFixedDelay(Runnable command,<span class="keyword">long</span> initialDelay,<span class="keyword">long</span> delay,TimeUnit unit); ：每隔period时间执行，不关心上次任务执行是否完毕</span><br><span class="line">    Executors.newScheduledThreadPool(<span class="number">2</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">//线程执行结果的获取 </span></span><br><span class="line"> <span class="keyword">void</span> ExecutorService.exec():无返回值</span><br><span class="line"> <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Callable&lt;T&gt; task)</span></span>; 有返回值</span><br><span class="line"> <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Runnable&lt;T&gt; task)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.Future模式</span><br><span class="line">  在多线程中使用Callable和FutrueTask可以在主线程获取到子线程的返回值。</span><br><span class="line">  主线程调用get方法获取callable的计算结果，如果子线程没有执行完，那么会导致主线程阻塞，直到计算完成</span><br></pre></td></tr></table></figure>
+
+<h4 id="阻塞队列BlockingQueue"><a href="#阻塞队列BlockingQueue" class="headerlink" title="阻塞队列BlockingQueue"></a>阻塞队列BlockingQueue</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">概念：阻塞队列(先进先出的队列)相比来说就是生产者生产消息（add,put），消费者消费消息的（remove,take）,当不满足条件是会发生阻塞，或者异常等信息。接口是BlockingQueue</span><br><span class="line">当添加元素的时，队列满了，那么添加元素的线程将挂起，等待被唤醒；当删除元素的是，队列满了，那么删除元素的线程将挂起，等待被唤醒</span><br><span class="line">架构体系：BlockingQueue是Collection的子类</span><br><span class="line">分类：ArrayBlockinfQueue, LinkdeBlockQueue,PriorityBlockingQueue,SynchronousQueue,DelayQueue,LinkedTransferQueue,LinkedBlockingDeque</span><br></pre></td></tr></table></figure>
+
+
+
+<table>
+<thead>
+<tr>
+<th>方法类型</th>
+<th>抛出异常</th>
+<th>bolean</th>
+<th>阻塞</th>
+<th>超时</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>插入</td>
+<td>add</td>
+<td>offer</td>
+<td>put</td>
+<td>offer(e,time)</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>remove</td>
+<td>poll</td>
+<td>take</td>
+<td>poll(e,time)</td>
+</tr>
+<tr>
+<td>检查</td>
+<td>element</td>
+<td>peek</td>
+<td>无</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<p>​        </p>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BlockingQueue</td>
+<td>阻塞队列接口 定义了阻塞队列的6个重要方法</td>
+</tr>
+<tr>
+<td>ArrayBlockinfQueue</td>
+<td>基于数组结构的有界阻塞队列</td>
+</tr>
+<tr>
+<td>LinkdeBlockingQueue</td>
+<td>基于链表结构的有界阻塞队列，默认是Integer.MAX_VALUE</td>
+</tr>
+<tr>
+<td>PriorityBlockingQueue</td>
+<td>优先级排序队列的无界阻塞队列，必须要实现Comparator接口 进行数据的比较</td>
+</tr>
+<tr>
+<td>SynchronousQueue</td>
+<td>不存储元素的阻塞队列，单个元素队列</td>
+</tr>
+<tr>
+<td>DelayQueue</td>
+<td>基于PriorityBlockingQueue实现的延迟无界阻塞队列，差评师有用到</td>
+</tr>
+<tr>
+<td>LinkedTransferQueue</td>
+<td>基于链表结构的无界阻塞队列</td>
+</tr>
+<tr>
+<td>LinkedBlockingDeque</td>
+<td>基于链表结构的双向阻塞队列</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>​            </p>
+<h4 id="非阻塞队列"><a href="#非阻塞队列" class="headerlink" title="非阻塞队列"></a>非阻塞队列</h4><h4 id="同步器"><a href="#同步器" class="headerlink" title="同步器"></a>同步器</h4><h5 id="CyclicBarrier-循环屏障"><a href="#CyclicBarrier-循环屏障" class="headerlink" title="CyclicBarrier :循环屏障"></a>CyclicBarrier :循环屏障</h5><p>​                让一组线程到达一个屏障(同步点)时阻塞，知道最后一个线程也到达屏障时，屏障才会开门</p>
+<h5 id="Semaphore"><a href="#Semaphore" class="headerlink" title="Semaphore"></a>Semaphore</h5><h3 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">java内存模式</span><br><span class="line">  每个线程都会创建一个工作内存(属于线程私有的数据区域)，线程从主内存中将变量保存在自己的工作内存中，如果线程对变量进行修改都会先保存在自己的工作内存中，再将数据更新到主内存中。所以线程是不能直接修改主内存中变量的数据。而且各个线程也不能相互访问彼此的工作内存，线程间的通信需要通过主内存来完成。所以线程的工作内存更新数据是无法被其他线程立即获取到。</span><br><span class="line">  特性：</span><br><span class="line">  可见性：线程修改的变量，需要对所有的线程可见</span><br><span class="line">  原子性</span><br><span class="line">  有序性</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Volatile原理"><a href="#Volatile原理" class="headerlink" title="Volatile原理"></a>Volatile原理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">volatile:轻量级的同步机制</span><br><span class="line">特点：</span><br><span class="line">	保证变量可见性</span><br><span class="line">	不保证原子性</span><br><span class="line">	禁止指令的重排序</span><br><span class="line">		</span><br><span class="line">重排序：编译重排序，指令重排序，内存重排序。</span><br><span class="line">处理器在进行重排序时，必须考虑指令之间的数据依赖性。多线程环境中线程交替执行，由于编译器优化重排的存在，两个线程使用的变量能否保证数据一致性是无法确定的</span><br><span class="line">	</span><br><span class="line">volatile的用法：</span><br><span class="line">面试题：在哪些地方用到过volatile?</span><br><span class="line">单例模式：双重检锁单例，为什么对象要用volatile修饰</span><br><span class="line">答案：</span><br><span class="line"> 创建一个对象new Object()分为三步</span><br><span class="line"> 1.allocate memory分配对象空间</span><br><span class="line"> 2.instance(memory) 初始化对象</span><br><span class="line"> 3.instance &#x3D; memory 设置实例指向分配的内存地址</span><br><span class="line"> 因为2、3不存在数据依赖关系，所以可能会发生重排序变成1、3、2。</span><br><span class="line"> 所以当访问instance不为null,d但是instance实例未必初始化完成，会造成线程安全问题。</span><br><span class="line"> 所以volatile可以禁止指令重排序，防止这个现象。</span><br></pre></td></tr></table></figure>
+
+<h3 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">使用原则：</span><br><span class="line">CAS(V,E,N) :</span><br><span class="line">V=主内存的变量值；E=程序预期本地内存的值；N=要更新的值</span><br><span class="line">当V=E 说明主内存和本地内存的值是一致的，可以进行修改；</span><br><span class="line">当V!=E 说明主内存和本地内存的值是不一样的，需要将主内存的值刷新到本地内存。循环比较。</span><br><span class="line"></span><br><span class="line">问题：CAS的使用原则</span><br><span class="line"> <span class="number">1</span>.自旋锁</span><br><span class="line"> <span class="number">2</span>.Unsafe类</span><br><span class="line">AtomicInteger类的解析</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndIncrement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">this</span>: AtomicInteger对象，</span><br><span class="line">valueOffset：对象在内存中的偏移地址。</span><br><span class="line">unsafe类：是CAS具体是实现类，都是<span class="keyword">native</span>方法，涉及到底层操作系统的方法。</span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndAddInt</span><span class="params">(Object var1, <span class="keyword">long</span> var2, <span class="keyword">int</span> var4)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> var5;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        var5 = <span class="keyword">this</span>.getIntVolatile(var1, var2);</span><br><span class="line">    &#125; <span class="keyword">while</span>(!<span class="keyword">this</span>.compareAndSwapInt(var1, var2, var5, var5 + var4));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> var5;</span><br><span class="line">&#125; </span><br><span class="line">getIntVolatile：就是根据这个对象在内存的偏移地址获取到数据值。</span><br><span class="line"><span class="keyword">this</span>.compareAndSwapInt(var1, var2, var5, var5 + var4) ：这个过程是一个原子性的过程，</span><br><span class="line">  	va1：对象； var2：对象的内存地址，var5：预期的值，var5 + var4要更新的值。</span><br><span class="line">    即var2对应的值与var5进行比较，相同--&gt;更新var5+var4; 不相同--&gt;返回<span class="keyword">false</span></span><br><span class="line"><span class="keyword">do</span> <span class="keyword">while</span>循环自旋直到更新成功，保证了一致性，有提高了并发性能</span><br><span class="line">  </span><br><span class="line">CAS的缺点</span><br><span class="line">问题二：<span class="keyword">do</span> <span class="keyword">while</span>循环时间长，开销大</span><br><span class="line">  	如果一直更新不成功，线程会一直循环，影响CPU性能</span><br><span class="line">问题一：ABA问题</span><br><span class="line">	线程A读取的值是a; 线程B把a修改为b,线程C把b修改为a; 线程A修改时变量也是a,修改成功。 但是变量已经被修改过了两次。</span><br><span class="line">  ABA的问题解决方案：</span><br><span class="line">    引入版本的概念，对每个数据的更新都会更新版本version,version的更新只会++，不会--。所以不会有ABA问题.</span><br><span class="line">    如果更新时stamp不正确 说明数据已经被修改过了。</span><br><span class="line">    AtomicStampedReference reference = <span class="keyword">new</span> AtomicStampedReference(<span class="number">100</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> stamp = reference.getStamp();</span><br><span class="line">    reference.compareAndSet(<span class="number">100</span>, <span class="number">101</span>, stamp, stamp+<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2020/03/17/%E5%B9%B6%E5%8F%91/">并发</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">HOUHAO</a></p>
+        <p><span>发布时间:</span>2020-03-17, 17:31:07</p>
+        <p><span>最后更新:</span>2020-01-10, 13:53:46</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2020/03/17/%E5%B9%B6%E5%8F%91/" title="并发">https://houhaodashen.github.io/2020/03/17/%E5%B9%B6%E5%8F%91/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://houhaodashen.github.io/2020/03/17/%E5%B9%B6%E5%8F%91/　　作者: HOUHAO" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/">
+                    分布式
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2020/03/17/1.%E8%AF%B7%E8%AF%B4%E8%AF%B4jvm%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/">
+                    1.请说说jvm的基本结构
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#并发"><span class="toc-number">1.</span> <span class="toc-text">并发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#锁的深入"><span class="toc-number">1.1.</span> <span class="toc-text">锁的深入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并发包JUC"><span class="toc-number">1.2.</span> <span class="toc-text">并发包JUC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#执行程序-线程池"><span class="toc-number">1.2.1.</span> <span class="toc-text">执行程序:线程池</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#阻塞队列BlockingQueue"><span class="toc-number">1.2.2.</span> <span class="toc-text">阻塞队列BlockingQueue</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#非阻塞队列"><span class="toc-number">1.2.3.</span> <span class="toc-text">非阻塞队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#同步器"><span class="toc-number">1.2.4.</span> <span class="toc-text">同步器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#CyclicBarrier-循环屏障"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">CyclicBarrier :循环屏障</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Semaphore"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">Semaphore</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JMM"><span class="toc-number">1.3.</span> <span class="toc-text">JMM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Volatile原理"><span class="toc-number">1.4.</span> <span class="toc-text">Volatile原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS"><span class="toc-number">1.5.</span> <span class="toc-text">CAS</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"并发　| waste talent people　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/" title="上一篇: 分布式">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2020/03/17/1.%E8%AF%B7%E8%AF%B4%E8%AF%B4jvm%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" title="下一篇: 1.请说说jvm的基本结构">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/%E5%B9%B6%E5%8F%91/">并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/1.%E8%AF%B7%E8%AF%B4%E8%AF%B4jvm%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/">1.请说说jvm的基本结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2020 HOUHAO
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

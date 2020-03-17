@@ -14,17 +14,16 @@
 <meta name="author" content="HOUHAO" />
 
 
-    
-    
 
-
-<meta name="description" content="技术">
-<meta property="og:type" content="website">
-<meta property="og:title" content="waste talent people">
-<meta property="og:url" content="https://houhaodashen.github.io/index.html">
+<meta name="description" content="设计模式单例模式​        创建方式  饿汉式 ：类初始化时，就会立即加载对象，线程天生安全，调用效率高，但是浪费内存  懒汉式 ：类初始化时，不会立即初始化对象，当真正需要时，才会创建该对象。降低内存，但是会存在线程不安全  静态内部方式 ： 结合懒汉式和饿汉式的优点，真正需要对象时创建对象，加载类的线程安全的  枚举单例：枚举本身就是单例  双重检测锁方式：因为JVM的重排序问题，可能会">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="https://houhaodashen.github.io/2020/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="waste talent people">
-<meta property="og:description" content="技术">
+<meta property="og:description" content="设计模式单例模式​        创建方式  饿汉式 ：类初始化时，就会立即加载对象，线程天生安全，调用效率高，但是浪费内存  懒汉式 ：类初始化时，不会立即初始化对象，当真正需要时，才会创建该对象。降低内存，但是会存在线程不安全  静态内部方式 ： 结合懒汉式和饿汉式的优点，真正需要对象时创建对象，加载类的线程安全的  枚举单例：枚举本身就是单例  双重检测锁方式：因为JVM的重排序问题，可能会">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-17T09:31:07.236Z">
+<meta property="article:modified_time" content="2019-12-09T11:21:38.000Z">
 <meta property="article:author" content="HOUHAO">
 <meta name="twitter:card" content="summary">
 
@@ -56,13 +55,11 @@
 
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>waste talent people</title>
+<title>设计模式 | waste talent people</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -71,8 +68,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -266,9 +263,7 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-设计模式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2020/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="article-date">
@@ -286,12 +281,19 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    <h1 class="article-title" itemprop="name">
+      设计模式
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -366,537 +368,119 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-分布式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/" class="article-date">
-      <time datetime="2020-03-17T09:31:07.200Z" itemprop="datePublished">2020-03-17</time>
-</a>
-
-
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2020/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">HOUHAO</a></p>
+        <p><span>发布时间:</span>2020-03-17, 17:31:07</p>
+        <p><span>最后更新:</span>2019-12-09, 19:21:38</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2020/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">https://houhaodashen.github.io/2020/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://houhaodashen.github.io/2020/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/　　作者: HOUHAO" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+
+
+
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h2><h3 id="1-RPC和本地调用的区别"><a href="#1-RPC和本地调用的区别" class="headerlink" title="1.RPC和本地调用的区别"></a>1.RPC和本地调用的区别</h3><p>​     RPC调用：RPC是指远程调用，这种调用可以跨平台，跨语言的。大部分采用HTTP协议进行通讯，只要支持socket技术便可以</p>
-<p>   本地调用：只能支持java语言之间调用，虚拟机之间的调用</p>
-<h3 id="2-服务限流"><a href="#2-服务限流" class="headerlink" title="2.服务限流"></a>2.服务限流</h3><p>​    概念：防止服务流量过大，对超出的部分请求进行限制。保护服务器资源以及业务的稳定运行。</p>
-<p>​    场景：秒杀，抢购，下单等高并发，高流量的场景</p>
-<p>​    实现：</p>
-<p>​            1、计数器方式</p>
-<p>​            2、令牌桶方式：存放固定容量令牌的桶，按照固定速率向桶中添加令牌</p>
-<p>​                    * 按照2r/s的速率向桶中添加令牌。最多存档N个令牌，当桶中的令牌大于N,则拒绝新的令牌添加</p>
-<p>​                    * 当一个请求进入，将从桶中删除1-n个令牌，接着数据包被发送到网络上，如果桶中的令牌不足n个，则不会                        删除令牌，且该数据包将被限流（要么丢弃，要么缓冲区等待）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">		<span class="comment">//guava中的RateLimiter实现类令牌桶方式</span></span><br><span class="line">		<span class="comment">//每秒的创建速率</span></span><br><span class="line">		<span class="comment">//这个也只是针对单点的服务限流，万一是多台机器呢</span></span><br><span class="line">		<span class="keyword">static</span> RateLimiter rateLimiter = RateLimiter.create(<span class="number">5.0</span>);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">getAckRequest</span><span class="params">()</span></span>&#123;</span><br><span class="line">      	<span class="comment">//拿到令牌需要消耗的时间</span></span><br><span class="line"><span class="comment">//      double acquire = rateLimiter.acquire();</span></span><br><span class="line">        <span class="comment">//多久拿到令牌 不然返回false</span></span><br><span class="line">        <span class="keyword">boolean</span> acquire = rateLimiter.tryAcquire(<span class="number">1000</span>, TimeUnit.MILLISECONDS);</span><br><span class="line">        <span class="keyword">if</span> (!acquire)&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() +<span class="string">" 拿不到请求"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() +<span class="string">" 拿到了请求---"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//分布式的限流咋整呢 ---&gt; redis+lua  redis控制了并发性，lua控制更新和获取的原子性</span></span><br></pre></td></tr></table></figure>
-
-<p>​            3、漏桶方式</p>
-<p>​            4、应用层限流。</p>
-<h3 id="3-服务降级"><a href="#3-服务降级" class="headerlink" title="3.服务降级"></a>3.服务降级</h3><p>​     概念：在高并发情况下，防止用户一直等待，使用服务降级方式（返回给一个友好的提示给客户端）</p>
-<h3 id="4-服务熔断"><a href="#4-服务熔断" class="headerlink" title="4.服务熔断"></a>4.服务熔断</h3><h3 id="5-服务隔离"><a href="#5-服务隔离" class="headerlink" title="5.服务隔离"></a>5.服务隔离</h3>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-并发" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2020/03/17/%E5%B9%B6%E5%8F%91/" class="article-date">
-      <time datetime="2020-03-17T09:31:07.173Z" itemprop="datePublished">2020-03-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/17/%E5%B9%B6%E5%8F%91/">并发</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><h3 id="锁的深入"><a href="#锁的深入" class="headerlink" title="锁的深入"></a>锁的深入</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.可重入锁(递归锁)</span><br><span class="line">	 当一个线程得到一个对象锁后，在请求内部代码块(内层代码块要获取这个对象锁)，那么这个线程也能访问这个内层函数。防止了死锁。</span><br><span class="line">	 <span class="keyword">synchronized</span>、Lock</span><br><span class="line"><span class="number">2</span>.乐观锁</span><br><span class="line">	默认没有不会发生并发问题，但是在更新的时候会加上版本号或者CAS机制实现。</span><br><span class="line">	Mysql中的update:</span><br><span class="line">	where条件中判断拿出来的version是否与数据库中的version相同。那么就可以更新成功。</span><br><span class="line">	update table set x=x+1, version=version+1 where id=#&#123;id&#125; and version=#&#123;version&#125;;    </span><br><span class="line"><span class="number">3</span>.悲观锁</span><br><span class="line">	无论是否在多线程还是单线程环境中，悲观锁也认为有多个线程并发的获取锁。所以只有当线程拿到对象的锁之后，才有能执行；否则就阻塞等待锁的释放</span><br><span class="line">	<span class="keyword">synchronized</span>、Lock</span><br><span class="line"><span class="number">4</span>.自旋锁</span><br><span class="line">  	尝试获取锁的线程不会立即阻塞，而是采用循环的方式尝试去获取锁。这样子的话可以减少线程的上下文切换，但是正因为锁的不断循环会消耗CPU的性能。</span><br><span class="line">  	比如：Atomic原子类</span><br><span class="line"><span class="number">5</span>.轻量级锁</span><br><span class="line"><span class="number">6</span>.偏向锁</span><br><span class="line">  	通常情况下一般都是单线程的，那么会在对象的mark down存放当前线程的id,如果是相同的线程访问，不需要获取锁，就可以直接访问你这个对象。但是如果有其他线程尝试获取这个对象，那么就会从偏向锁升级到轻量级锁，轻量级锁会使得线程通过CAS的方式获取锁，如果获取不到，会通过自旋锁来尝试锁。</span><br><span class="line"><span class="number">8</span>.读写锁</span><br><span class="line"><span class="number">9</span>.CAS无锁</span><br><span class="line">	Compare And Swap比较再交换； </span><br><span class="line"><span class="number">10</span> 读写锁</span><br><span class="line">	ReentrantReadWriteLock 实现的就是AbstractQueuedSynchronizer</span><br><span class="line"><span class="number">11</span>.公平锁和非公平锁</span><br><span class="line">  	对应的类：ReentrantLock，<span class="keyword">synchronized</span>非公平锁</span><br><span class="line">  	公平锁：多个线程按照申请锁的顺序来，先进先出选择获取锁</span><br><span class="line">    非公平锁：多个线程不按照申请锁的顺序来拿锁，都尝试获取锁，哪个线程拿到就拿到。非公平锁的吞吐量比公平锁大</span><br><span class="line"><span class="number">12</span>.独占锁(写锁)/共享锁(读锁)/互斥锁</span><br><span class="line">  独占锁：同一时刻只能有一个线程获取到锁</span><br><span class="line">  共享锁：同一时刻可以有多个线程持有</span><br><span class="line">  互斥锁：共享锁可以保证读读的并发性，但是读写，写写，写读是互斥的</span><br><span class="line">  DEMO:ReentrantReadWriteLock</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自旋锁demo</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyHashMap</span> </span>&#123;</span><br><span class="line">    AtomicReference&lt;Thread&gt; reference = <span class="keyword">new</span> AtomicReference&lt;&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">lock</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Thread thread = Thread.currentThread();</span><br><span class="line">        System.out.println(thread.getName() + <span class="string">" come in"</span>);</span><br><span class="line">        <span class="keyword">while</span> (!reference.compareAndSet(<span class="keyword">null</span>, thread))&#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(thread.getName() + <span class="string">" lock"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Thread thread = Thread.currentThread();</span><br><span class="line">        reference.compareAndSet(thread, <span class="keyword">null</span>);</span><br><span class="line">        System.out.println(thread.getName() + <span class="string">" unlock"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 问题 synchronized和lock的区别</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>synchronized</th>
-<th>lock</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>锁的实现</td>
-<td>非公平锁</td>
-<td>非公平锁、公平锁都可以实现</td>
-</tr>
-<tr>
-<td>锁的获取</td>
-<td></td>
-<td>可以超时获取 或者中断 lockInterrupt</td>
-</tr>
-<tr>
-<td>jvm</td>
-<td>java的关键字;底层是monitor对象，加锁monitorenter,释放锁monitorexit</td>
-<td>java5的juc类</td>
-</tr>
-<tr>
-<td>线程阻塞</td>
-<td>不需要自己搞</td>
-<td>需要自己维护</td>
-</tr>
-<tr>
-<td>线程await/notify</td>
-<td></td>
-<td>线程可以分条件await。绑定多个Condition</td>
-</tr>
-</tbody></table>
-<h3 id="并发包JUC"><a href="#并发包JUC" class="headerlink" title="并发包JUC"></a>并发包JUC</h3><h4 id="执行程序-线程池"><a href="#执行程序-线程池" class="headerlink" title="执行程序:线程池"></a>执行程序:线程池</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">并发包里面包含的组件：</span><br><span class="line"> * 执行程序</span><br><span class="line"> * 并发队列</span><br><span class="line"> * 同步器</span><br><span class="line"> * 并发Collcation</span><br><span class="line"> </span><br><span class="line"><span class="number">1</span>.执行程序：线程池</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                            <span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                            <span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                            TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">                            BlockingQueue&lt;Runnable&gt; workQueue,</span></span></span><br><span class="line"><span class="function"><span class="params">                            ThreadFactory threadFactory,</span></span></span><br><span class="line"><span class="function"><span class="params">                            RejectedExecutionHandler handler)</span></span></span><br><span class="line"><span class="function">  线程池执行者构造函数：</span></span><br><span class="line"><span class="function">  corePoolSize：线程池实现运行的线程数。当运行线程小于corePoolSize时，会在corePoolSize里面执行</span></span><br><span class="line"><span class="function">  maximumPoolSize：线程池允许运行的最大线程数，当workQueue存放不下的时候，任务放在maximumPoolSize中执行</span></span><br><span class="line"><span class="function">  keepAliveTime，unit：空闲线程等待任务的最长时间，超过这个时间线程销毁。</span></span><br><span class="line"><span class="function">  workQueue：任务执行前保存任务的队列。</span></span><br><span class="line"><span class="function">  handler：任务已经无法存放和执行时，拒绝任务的策略。默认是拒绝任务，并且抛出异常。</span></span><br><span class="line"><span class="function">  		AbortPolicy：默认是拒绝任务，并且抛出异常</span></span><br><span class="line"><span class="function">      DiscardPolicy:直接丢弃，不处理</span></span><br><span class="line"><span class="function">      DiscardOldestPolicy：抛弃队列中等待时间最久的</span></span><br><span class="line"><span class="function">      CallerRunPolicy:交给主线程执行</span></span><br><span class="line"><span class="function">  特点：</span></span><br><span class="line"><span class="function">  	线程复用，控制最大并发数，管理线程</span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  问题一：workQueue为什么是阻塞队列</span></span><br><span class="line"><span class="function">  	阻塞队列是为了让线程阻塞，等到corePoolSize释放资源，可以把线程池视为一种资源</span></span><br><span class="line"><span class="function">  问题二：corePoolSize和maximumPoolSize设计的原因</span></span><br><span class="line"><span class="function">  	maximumPoolSize:规定了线程池允许运行的最大线程数。</span></span><br><span class="line"><span class="function">  	corePoolSize：线程池维持的线程数。所以corePoolSize&lt;</span>=maximumPoolSize</span><br><span class="line">  问题三：线程池的线程池大小怎么配置</span><br><span class="line">    CPU密集型任务：任务不会产生大量的IO阻塞，CPU运行速度快。 线程数= CPU核数+<span class="number">1</span></span><br><span class="line">    IO密集：任务产生大量IO阻塞，线程可能会一直在等待，增加线程数，减少CPU等待时间。线程数 = <span class="number">2</span>*CPU核数</span><br><span class="line">    </span><br><span class="line">  <span class="comment">//Executors根据ThreadPoolExecutor提供的方法</span></span><br><span class="line">  <span class="comment">//固定大小的线程池 </span></span><br><span class="line">  Executors.newFixedThreadPool(<span class="number">3</span>); </span><br><span class="line">	corePoolSize=<span class="number">3</span> workQueue=LinkedBlockingQueue  任务队列是一个无界队列。所以运行的线程有corePoolSize个</span><br><span class="line">  <span class="comment">//缓存大小的线程池 </span></span><br><span class="line">  Executors.newCachedThreadPool();</span><br><span class="line">  corePoolSize=<span class="number">0</span> workQueue=SynchronousQueue maximumPoolSize=<span class="keyword">int</span>最大值。SynchronousQueue是一个没有容量队列，所以有任务会直接提交给maximumPoolSize执行。</span><br><span class="line">  <span class="comment">//单线程的线程池</span></span><br><span class="line">  Executors.newSingleThreadExecutor();</span><br><span class="line">  corePoolSize=<span class="number">1</span> workQueue=LinkedBlockingQueue corePoolSize只有一个线程可以执行任务，但是能保证线程一直存活，不需要重复创建线程。</span><br><span class="line"> </span><br><span class="line"><span class="number">2</span>.定时线程执行者ScheduledPoolExecutor</span><br><span class="line">    方法：</span><br><span class="line">    ScheduledFuture&lt;?&gt; scheduleAtFixedRate(Runnable command, <span class="keyword">long</span> initialDelay,<span class="keyword">long</span> period,TimeUnit unit) ：每隔period时间执行，要等到上次任务执行完毕</span><br><span class="line">    ScheduledFuture&lt;?&gt; scheduleWithFixedDelay(Runnable command,<span class="keyword">long</span> initialDelay,<span class="keyword">long</span> delay,TimeUnit unit); ：每隔period时间执行，不关心上次任务执行是否完毕</span><br><span class="line">    Executors.newScheduledThreadPool(<span class="number">2</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">//线程执行结果的获取 </span></span><br><span class="line"> <span class="keyword">void</span> ExecutorService.exec():无返回值</span><br><span class="line"> <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Callable&lt;T&gt; task)</span></span>; 有返回值</span><br><span class="line"> <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Runnable&lt;T&gt; task)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.Future模式</span><br><span class="line">  在多线程中使用Callable和FutrueTask可以在主线程获取到子线程的返回值。</span><br><span class="line">  主线程调用get方法获取callable的计算结果，如果子线程没有执行完，那么会导致主线程阻塞，直到计算完成</span><br></pre></td></tr></table></figure>
-
-<h4 id="阻塞队列BlockingQueue"><a href="#阻塞队列BlockingQueue" class="headerlink" title="阻塞队列BlockingQueue"></a>阻塞队列BlockingQueue</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">概念：阻塞队列(先进先出的队列)相比来说就是生产者生产消息（add,put），消费者消费消息的（remove,take）,当不满足条件是会发生阻塞，或者异常等信息。接口是BlockingQueue</span><br><span class="line">当添加元素的时，队列满了，那么添加元素的线程将挂起，等待被唤醒；当删除元素的是，队列满了，那么删除元素的线程将挂起，等待被唤醒</span><br><span class="line">架构体系：BlockingQueue是Collection的子类</span><br><span class="line">分类：ArrayBlockinfQueue, LinkdeBlockQueue,PriorityBlockingQueue,SynchronousQueue,DelayQueue,LinkedTransferQueue,LinkedBlockingDeque</span><br></pre></td></tr></table></figure>
-
-
-
-<table>
-<thead>
-<tr>
-<th>方法类型</th>
-<th>抛出异常</th>
-<th>bolean</th>
-<th>阻塞</th>
-<th>超时</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>插入</td>
-<td>add</td>
-<td>offer</td>
-<td>put</td>
-<td>offer(e,time)</td>
-</tr>
-<tr>
-<td>删除</td>
-<td>remove</td>
-<td>poll</td>
-<td>take</td>
-<td>poll(e,time)</td>
-</tr>
-<tr>
-<td>检查</td>
-<td>element</td>
-<td>peek</td>
-<td>无</td>
-<td>无</td>
-</tr>
-</tbody></table>
-<p>​        </p>
-<table>
-<thead>
-<tr>
-<th>类</th>
-<th>介绍</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>BlockingQueue</td>
-<td>阻塞队列接口 定义了阻塞队列的6个重要方法</td>
-</tr>
-<tr>
-<td>ArrayBlockinfQueue</td>
-<td>基于数组结构的有界阻塞队列</td>
-</tr>
-<tr>
-<td>LinkdeBlockingQueue</td>
-<td>基于链表结构的有界阻塞队列，默认是Integer.MAX_VALUE</td>
-</tr>
-<tr>
-<td>PriorityBlockingQueue</td>
-<td>优先级排序队列的无界阻塞队列，必须要实现Comparator接口 进行数据的比较</td>
-</tr>
-<tr>
-<td>SynchronousQueue</td>
-<td>不存储元素的阻塞队列，单个元素队列</td>
-</tr>
-<tr>
-<td>DelayQueue</td>
-<td>基于PriorityBlockingQueue实现的延迟无界阻塞队列，差评师有用到</td>
-</tr>
-<tr>
-<td>LinkedTransferQueue</td>
-<td>基于链表结构的无界阻塞队列</td>
-</tr>
-<tr>
-<td>LinkedBlockingDeque</td>
-<td>基于链表结构的双向阻塞队列</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<p>​            </p>
-<h4 id="非阻塞队列"><a href="#非阻塞队列" class="headerlink" title="非阻塞队列"></a>非阻塞队列</h4><h4 id="同步器"><a href="#同步器" class="headerlink" title="同步器"></a>同步器</h4><h5 id="CyclicBarrier-循环屏障"><a href="#CyclicBarrier-循环屏障" class="headerlink" title="CyclicBarrier :循环屏障"></a>CyclicBarrier :循环屏障</h5><p>​                让一组线程到达一个屏障(同步点)时阻塞，知道最后一个线程也到达屏障时，屏障才会开门</p>
-<h5 id="Semaphore"><a href="#Semaphore" class="headerlink" title="Semaphore"></a>Semaphore</h5><h3 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">java内存模式</span><br><span class="line">  每个线程都会创建一个工作内存(属于线程私有的数据区域)，线程从主内存中将变量保存在自己的工作内存中，如果线程对变量进行修改都会先保存在自己的工作内存中，再将数据更新到主内存中。所以线程是不能直接修改主内存中变量的数据。而且各个线程也不能相互访问彼此的工作内存，线程间的通信需要通过主内存来完成。所以线程的工作内存更新数据是无法被其他线程立即获取到。</span><br><span class="line">  特性：</span><br><span class="line">  可见性：线程修改的变量，需要对所有的线程可见</span><br><span class="line">  原子性</span><br><span class="line">  有序性</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Volatile原理"><a href="#Volatile原理" class="headerlink" title="Volatile原理"></a>Volatile原理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">volatile:轻量级的同步机制</span><br><span class="line">特点：</span><br><span class="line">	保证变量可见性</span><br><span class="line">	不保证原子性</span><br><span class="line">	禁止指令的重排序</span><br><span class="line">		</span><br><span class="line">重排序：编译重排序，指令重排序，内存重排序。</span><br><span class="line">处理器在进行重排序时，必须考虑指令之间的数据依赖性。多线程环境中线程交替执行，由于编译器优化重排的存在，两个线程使用的变量能否保证数据一致性是无法确定的</span><br><span class="line">	</span><br><span class="line">volatile的用法：</span><br><span class="line">面试题：在哪些地方用到过volatile?</span><br><span class="line">单例模式：双重检锁单例，为什么对象要用volatile修饰</span><br><span class="line">答案：</span><br><span class="line"> 创建一个对象new Object()分为三步</span><br><span class="line"> 1.allocate memory分配对象空间</span><br><span class="line"> 2.instance(memory) 初始化对象</span><br><span class="line"> 3.instance &#x3D; memory 设置实例指向分配的内存地址</span><br><span class="line"> 因为2、3不存在数据依赖关系，所以可能会发生重排序变成1、3、2。</span><br><span class="line"> 所以当访问instance不为null,d但是instance实例未必初始化完成，会造成线程安全问题。</span><br><span class="line"> 所以volatile可以禁止指令重排序，防止这个现象。</span><br></pre></td></tr></table></figure>
-
-<h3 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">使用原则：</span><br><span class="line">CAS(V,E,N) :</span><br><span class="line">V=主内存的变量值；E=程序预期本地内存的值；N=要更新的值</span><br><span class="line">当V=E 说明主内存和本地内存的值是一致的，可以进行修改；</span><br><span class="line">当V!=E 说明主内存和本地内存的值是不一样的，需要将主内存的值刷新到本地内存。循环比较。</span><br><span class="line"></span><br><span class="line">问题：CAS的使用原则</span><br><span class="line"> <span class="number">1</span>.自旋锁</span><br><span class="line"> <span class="number">2</span>.Unsafe类</span><br><span class="line">AtomicInteger类的解析</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndIncrement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">this</span>: AtomicInteger对象，</span><br><span class="line">valueOffset：对象在内存中的偏移地址。</span><br><span class="line">unsafe类：是CAS具体是实现类，都是<span class="keyword">native</span>方法，涉及到底层操作系统的方法。</span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndAddInt</span><span class="params">(Object var1, <span class="keyword">long</span> var2, <span class="keyword">int</span> var4)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> var5;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        var5 = <span class="keyword">this</span>.getIntVolatile(var1, var2);</span><br><span class="line">    &#125; <span class="keyword">while</span>(!<span class="keyword">this</span>.compareAndSwapInt(var1, var2, var5, var5 + var4));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> var5;</span><br><span class="line">&#125; </span><br><span class="line">getIntVolatile：就是根据这个对象在内存的偏移地址获取到数据值。</span><br><span class="line"><span class="keyword">this</span>.compareAndSwapInt(var1, var2, var5, var5 + var4) ：这个过程是一个原子性的过程，</span><br><span class="line">  	va1：对象； var2：对象的内存地址，var5：预期的值，var5 + var4要更新的值。</span><br><span class="line">    即var2对应的值与var5进行比较，相同--&gt;更新var5+var4; 不相同--&gt;返回<span class="keyword">false</span></span><br><span class="line"><span class="keyword">do</span> <span class="keyword">while</span>循环自旋直到更新成功，保证了一致性，有提高了并发性能</span><br><span class="line">  </span><br><span class="line">CAS的缺点</span><br><span class="line">问题二：<span class="keyword">do</span> <span class="keyword">while</span>循环时间长，开销大</span><br><span class="line">  	如果一直更新不成功，线程会一直循环，影响CPU性能</span><br><span class="line">问题一：ABA问题</span><br><span class="line">	线程A读取的值是a; 线程B把a修改为b,线程C把b修改为a; 线程A修改时变量也是a,修改成功。 但是变量已经被修改过了两次。</span><br><span class="line">  ABA的问题解决方案：</span><br><span class="line">    引入版本的概念，对每个数据的更新都会更新版本version,version的更新只会++，不会--。所以不会有ABA问题.</span><br><span class="line">    如果更新时stamp不正确 说明数据已经被修改过了。</span><br><span class="line">    AtomicStampedReference reference = <span class="keyword">new</span> AtomicStampedReference(<span class="number">100</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> stamp = reference.getStamp();</span><br><span class="line">    reference.compareAndSet(<span class="number">100</span>, <span class="number">101</span>, stamp, stamp+<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<p>​    </p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-1.请说说jvm的基本结构" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2020/03/17/1.%E8%AF%B7%E8%AF%B4%E8%AF%B4jvm%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" class="article-date">
-      <time datetime="2020-03-17T09:31:07.082Z" itemprop="datePublished">2020-03-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/">
+                    分布式
+                </a>
+            </div>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/17/1.%E8%AF%B7%E8%AF%B4%E8%AF%B4jvm%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/">1.请说说jvm的基本结构</a>
-    </h1>
-  
+    </nav>
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>1.请说说jvm的基本结构</p>
-<p>​     类加载器，堆、直接内存，方法区，虚拟机栈，本地方法栈，PC寄存器，执行引擎</p>
-<p>2.什么是JVM</p>
-<p>​    应用和操作系统的桥梁。二进制文件如何与操作系统交互</p>
-<p>3.堆空间的接口</p>
-<p>​    新生代：eden surivor1 survivor2</p>
-<p>​    老年代：大对象，老对象</p>
-<p>​    永久代/MetaSpace: jdk7，jdk8的区别</p>
-<p>4.jav中堆和栈的关系</p>
-<p>​    堆：管理对象，生成，修改，销毁对象</p>
-<p>​    栈：局部变量表对于对象的引用</p>
-<p>5.为什么新生代要设置两个survivor区，jvm的设计有何目的</p>
-<p>​    复制算法 对象的拷贝</p>
-<p>6.垃圾回收中的复制算法适合用于什么样的场景</p>
-<p>​    GC之后剩余存活的对象少，对象小</p>
-<p>7.老年代的垃圾回收一般用什么算法</p>
-<p>​    标记整理 标记清除(CMS)</p>
-<p>8.Java的方法栈和本地方法栈有什么区别</p>
-<p>Java的方法栈是方法的调用</p>
-<p>本地方法栈是调用jvm的native方法</p>
-<p>9.GC回收机制</p>
-<p>​    垃圾回收算法 + 垃圾回收器</p>
-<ol start="10">
-<li><p>Top  jmap jstat jstack命令各自的用途</p>
-<p>top：查看系统的整体资源</p>
-<p>jmap:查询堆信息 jmap histo:live pid</p>
-<p>jstat:查看jvm的运行情况 </p>
-<p>jstack：查看线程的堆栈信息 jstack pid</p>
-</li>
-<li><p>有哪些常见jvm命令，说说各自的用途</p>
-<ol>
-<li>参考第十题</li>
-</ol>
-</li>
-<li><p>GC有哪些算法</p>
-<ol>
-<li>标记整理 标记清除 标记复制</li>
-</ol>
-</li>
-<li><p>什么是线程中断</p>
-<p> STW， </p>
-</li>
-<li><p>MGC、FGC分别是什么意思，他们在什么情况下会发生</p>
-<p>YoungGC  Full GC</p>
-</li>
-<li><p>请讲讲jvm的分代，为什么要分代，jvm分代有什么好处</p>
-<p>年轻代对象小，并且存活时间短。适合适应复制算法</p>
-<p>老年代对象大，存活时间长。适合整理，清除算法</p>
-<p>参数 -XX:MaxTeuringThreshold</p>
-</li>
-<li><p>你知道哪些jvm调优工具么？</p>
-</li>
-<li><p>在jvm中，年轻代如何向老年代转变？年轻代向老年代转换的重要参数什么？</p>
-<p>MaxTeuringThrshold</p>
-</li>
-<li><p>直接内存使用场景是什么，使用直接内存可能会存在什么问题？</p>
-<p>直接内存适用于NIO</p>
-<p>直接内存跳过了java堆，直接使用原生内存空间，访问速度快</p>
-<p>ByteBuffer.allocateDirect();</p>
-<p>参数 -XX:MaxDirectMemorySize=100m</p>
-</li>
-<li><p>堆内存有哪些重要的参数</p>
-</li>
-<li><p>如何设置堆大小，是否有一些经验值</p>
-</li>
-<li><p>如何打印JVM日志</p>
-<p>-XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps</p>
-</li>
-<li><p>请介绍常见的JVM参数    </p>
-</li>
-<li><p>CMS收集器有什么特点</p>
-<p>适用于老年代，停顿时间短,并发高</p>
-</li>
-</ol>
-<ol start="24">
-<li>G1收集器有什么特点</li>
-</ol>
-<ol start="25">
-<li><p>垃圾回收器有哪些</p>
-<p>Serial SerialOld</p>
-<p>ParNew CMS</p>
-<p>Parallel Sacvange , Parallel Old</p>
-<p>G1</p>
-</li>
-<li><p>java内存模型</p>
-<p>JMM模型</p>
-</li>
-<li><p>什么是类加载器，类加载器有哪些，类加载器的加载顺序是什么</p>
-<p>根加载器：/lib/</p>
-<p>拓展类加载器：/lib/ext</p>
-<p>应用程序类加载器</p>
-</li>
-<li><p>简述java内存分配与回收策略</p>
-</li>
-<li><p>Perm Space中保存什么数据？会引起OOM</p>
-<p>类信息，静态变量，常量。</p>
-<p>永久代过小</p>
-</li>
-<li><p>是否有做过jvm参数方面的调优，</p>
-<p>​    堆内存参数，直接内存参数MaxDirectMemorySize</p>
-</li>
-<li><p>内存溢出的根本原因是什么，如何解决</p>
-<p>jvm的资源不够用，导致内存溢出</p>
-</li>
-<li><p>简述java类加载机制</p>
-</li>
-<li><p>GC收集器有哪些？CMS收集器与G1收集器的特点</p>
-</li>
-<li><p>类加载器双亲委派模型机制是什么</p>
-</li>
-<li><p>什么情况下会出现永久代内存溢出，如何解决</p>
-<p>加大MaxPermSize，PermSize大小</p>
-</li>
-<li><p>什么情况下会出现堆内存溢出 ，什么解决</p>
-<p>堆内存不够，或者程序问题</p>
-</li>
-<li><p>什么情况下会出现直接内存溢出，如何解决</p>
-<p>NIO: ByteBuffer.allocateDirect()</p>
-</li>
-<li><p>什么情况下会出现过多线程导致内存溢出 如何解决</p>
-<p>OOM:unable to create new native thread</p>
-<p>本质是创建了太多的线程，而能创建的线程是有限的</p>
-</li>
-<li><p>什么情况下会出现CPU使用率过高的问题，如何解决</p>
-<p>top—&gt;ps -mp tid –&gt;jstack pid </p>
-</li>
-<li><p>OOM有哪些可能，应该如何处理</p>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
   
 </article>
 
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2020/03/17/hello-world/" class="article-date">
-      <time datetime="2020-03-17T07:33:55.672Z" itemprop="datePublished">2020-03-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#设计模式"><span class="toc-number">1.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单例模式"><span class="toc-number">1.1.</span> <span class="toc-text">单例模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态代理模式"><span class="toc-number">1.2.</span> <span class="toc-text">静态代理模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态代理模式"><span class="toc-number">1.3.</span> <span class="toc-text">动态代理模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模板设计模式"><span class="toc-number">1.4.</span> <span class="toc-text">模板设计模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#适配器模式"><span class="toc-number">1.5.</span> <span class="toc-text">适配器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#外观设计模式"><span class="toc-number">1.6.</span> <span class="toc-text">外观设计模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#装饰者模式"><span class="toc-number">1.7.</span> <span class="toc-text">装饰者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#策略模式"><span class="toc-number">1.8.</span> <span class="toc-text">策略模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#责任链模式"><span class="toc-number">1.9.</span> <span class="toc-text">责任链模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#观察者模式"><span class="toc-number">1.10.</span> <span class="toc-text">观察者模式</span></a></li></ol></li></ol>
+        
     </div>
-    
-    <div class="article-info article-info-index">
-      
-      
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
 
-      
-      
-      <div class="clearfix"></div>
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"设计模式　| waste talent people　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/" title="下一篇: 分布式">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
-    
-  </div>
-  
-</article>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/%E5%B9%B6%E5%8F%91/">并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/1.%E8%AF%B7%E8%AF%B4%E8%AF%B4jvm%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/">1.请说说jvm的基本结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/hello-world/">Hello World</a></li></ul>
 
 
 
 
-
-
-
-
-
-  
-  
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">

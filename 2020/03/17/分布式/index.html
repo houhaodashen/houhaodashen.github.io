@@ -15,15 +15,15 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="分布式1.RPC和本地调用的区别​     RPC调用：RPC是指远程调用，这种调用可以跨平台，跨语言的。大部分采用HTTP协议进行通讯，只要支持socket技术便可以    本地调用：只能支持java语言之间调用，虚拟机之间的调用 2.服务限流​    概念：防止服务流量过大，对超出的部分请求进行限制。保护服务器资源以及业务的稳定运行。 ​    场景：秒杀，抢购，下单等高并发，高流量的场景 ​">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://houhaodashen.github.io/2020/03/17/hello-world/index.html">
+<meta property="og:title" content="分布式">
+<meta property="og:url" content="https://houhaodashen.github.io/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/index.html">
 <meta property="og:site_name" content="waste talent people">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="分布式1.RPC和本地调用的区别​     RPC调用：RPC是指远程调用，这种调用可以跨平台，跨语言的。大部分采用HTTP协议进行通讯，只要支持socket技术便可以    本地调用：只能支持java语言之间调用，虚拟机之间的调用 2.服务限流​    概念：防止服务流量过大，对超出的部分请求进行限制。保护服务器资源以及业务的稳定运行。 ​    场景：秒杀，抢购，下单等高并发，高流量的场景 ​">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-17T07:33:55.672Z">
-<meta property="article:modified_time" content="2020-03-17T07:33:55.673Z">
+<meta property="article:published_time" content="2020-03-17T09:31:07.200Z">
+<meta property="article:modified_time" content="2019-12-23T12:45:36.000Z">
 <meta property="article:author" content="HOUHAO">
 <meta name="twitter:card" content="summary">
 
@@ -59,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Hello World | waste talent people</title>
+<title>分布式 | waste talent people</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -263,11 +263,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-分布式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2020/03/17/hello-world/" class="article-date">
-      <time datetime="2020-03-17T07:33:55.672Z" itemprop="datePublished">2020-03-17</time>
+      <a href="/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/" class="article-date">
+      <time datetime="2020-03-17T09:31:07.200Z" itemprop="datePublished">2020-03-17</time>
 </a>
 
 
@@ -282,7 +282,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      分布式
     </h1>
   
 
@@ -299,20 +299,21 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h2 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h2><h3 id="1-RPC和本地调用的区别"><a href="#1-RPC和本地调用的区别" class="headerlink" title="1.RPC和本地调用的区别"></a>1.RPC和本地调用的区别</h3><p>​     RPC调用：RPC是指远程调用，这种调用可以跨平台，跨语言的。大部分采用HTTP协议进行通讯，只要支持socket技术便可以</p>
+<p>   本地调用：只能支持java语言之间调用，虚拟机之间的调用</p>
+<h3 id="2-服务限流"><a href="#2-服务限流" class="headerlink" title="2.服务限流"></a>2.服务限流</h3><p>​    概念：防止服务流量过大，对超出的部分请求进行限制。保护服务器资源以及业务的稳定运行。</p>
+<p>​    场景：秒杀，抢购，下单等高并发，高流量的场景</p>
+<p>​    实现：</p>
+<p>​            1、计数器方式</p>
+<p>​            2、令牌桶方式：存放固定容量令牌的桶，按照固定速率向桶中添加令牌</p>
+<p>​                    * 按照2r/s的速率向桶中添加令牌。最多存档N个令牌，当桶中的令牌大于N,则拒绝新的令牌添加</p>
+<p>​                    * 当一个请求进入，将从桶中删除1-n个令牌，接着数据包被发送到网络上，如果桶中的令牌不足n个，则不会                        删除令牌，且该数据包将被限流（要么丢弃，要么缓冲区等待）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">		<span class="comment">//guava中的RateLimiter实现类令牌桶方式</span></span><br><span class="line">		<span class="comment">//每秒的创建速率</span></span><br><span class="line">		<span class="comment">//这个也只是针对单点的服务限流，万一是多台机器呢</span></span><br><span class="line">		<span class="keyword">static</span> RateLimiter rateLimiter = RateLimiter.create(<span class="number">5.0</span>);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">getAckRequest</span><span class="params">()</span></span>&#123;</span><br><span class="line">      	<span class="comment">//拿到令牌需要消耗的时间</span></span><br><span class="line"><span class="comment">//      double acquire = rateLimiter.acquire();</span></span><br><span class="line">        <span class="comment">//多久拿到令牌 不然返回false</span></span><br><span class="line">        <span class="keyword">boolean</span> acquire = rateLimiter.tryAcquire(<span class="number">1000</span>, TimeUnit.MILLISECONDS);</span><br><span class="line">        <span class="keyword">if</span> (!acquire)&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() +<span class="string">" 拿不到请求"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() +<span class="string">" 拿到了请求---"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//分布式的限流咋整呢 ---&gt; redis+lua  redis控制了并发性，lua控制更新和获取的原子性</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+<p>​            3、漏桶方式</p>
+<p>​            4、应用层限流。</p>
+<h3 id="3-服务降级"><a href="#3-服务降级" class="headerlink" title="3.服务降级"></a>3.服务降级</h3><p>​     概念：在高并发情况下，防止用户一直等待，使用服务降级方式（返回给一个友好的提示给客户端）</p>
+<h3 id="4-服务熔断"><a href="#4-服务熔断" class="headerlink" title="4.服务熔断"></a>4.服务熔断</h3><h3 id="5-服务隔离"><a href="#5-服务隔离" class="headerlink" title="5.服务隔离"></a>5.服务隔离</h3>
       
     </div>
     
@@ -320,13 +321,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2020/03/17/hello-world/">Hello World</a></p>
+        <p><span>本文标题:</span><a href="/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HOUHAO</a></p>
-        <p><span>发布时间:</span>2020-03-17, 15:33:55</p>
-        <p><span>最后更新:</span>2020-03-17, 15:33:55</p>
+        <p><span>发布时间:</span>2020-03-17, 17:31:07</p>
+        <p><span>最后更新:</span>2019-12-23, 20:45:36</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2020/03/17/hello-world/" title="Hello World">https://houhaodashen.github.io/2020/03/17/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://houhaodashen.github.io/2020/03/17/hello-world/　　作者: HOUHAO" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/" title="分布式">https://houhaodashen.github.io/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://houhaodashen.github.io/2020/03/17/%E5%88%86%E5%B8%83%E5%BC%8F/　　作者: HOUHAO" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -339,11 +340,17 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2020/03/17/1.%E8%AF%B7%E8%AF%B4%E8%AF%B4jvm%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/">
-                    1.请说说jvm的基本结构
+                <a href="/2020/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                    设计模式
                 </a>
             </div>
         
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2020/03/17/%E5%B9%B6%E5%8F%91/">
+                    并发
+                </a>
+            </div>
         
     </nav>
 
@@ -353,7 +360,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式"><span class="toc-number">1.</span> <span class="toc-text">分布式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-RPC和本地调用的区别"><span class="toc-number">1.1.</span> <span class="toc-text">1.RPC和本地调用的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-服务限流"><span class="toc-number">1.2.</span> <span class="toc-text">2.服务限流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-服务降级"><span class="toc-number">1.3.</span> <span class="toc-text">3.服务降级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-服务熔断"><span class="toc-number">1.4.</span> <span class="toc-text">4.服务熔断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-服务隔离"><span class="toc-number">1.5.</span> <span class="toc-text">5.服务隔离</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -389,7 +396,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Hello World　| waste talent people　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"分布式　| waste talent people　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -409,7 +416,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2020/03/17/1.%E8%AF%B7%E8%AF%B4%E8%AF%B4jvm%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" title="上一篇: 1.请说说jvm的基本结构">
+            <a href="/2020/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="上一篇: 设计模式">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -417,7 +424,9 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2020/03/17/%E5%B9%B6%E5%8F%91/" title="下一篇: 并发">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
 
